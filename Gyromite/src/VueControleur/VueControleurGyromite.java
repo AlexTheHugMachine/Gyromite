@@ -1,6 +1,6 @@
 package VueControleur;
 
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -32,7 +32,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
     // icones affichées dans la grille
     private ImageIcon icoHero;
     private ImageIcon icoVide;
-    private ImageIcon icoMur;
+    private ImageIcon icoMurHorizontal;
+    private ImageIcon icoMurVertical;
     private ImageIcon icoColonne;
 
     private JLabel[][] tabJLabel; // cases graphique (au moment du rafraichissement, chaque case va être associée à une icône, suivant ce qui est présent dans le modèle)
@@ -64,10 +65,11 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
 
     private void chargerLesIcones() {
-        icoHero = chargerIcone("Images/Pacman.png");
-        icoVide = chargerIcone("Images/Vide.png");
-        icoColonne = chargerIcone("Images/Colonne.png");
-        icoMur = chargerIcone("Images/Mur.png");
+        icoHero = chargerIcone("Images/sprites_prof/prof_look_left.png");
+        icoVide = chargerIcone("Images/sprites_tiles/vide.png");
+        icoColonne = chargerIcone("Images/sprites_tiles/platform1.png");
+        icoMurHorizontal = chargerIcone("Images/sprites_tiles/platform1.png");
+        icoMurVertical = chargerIcone("Images/sprites_tiles/platform2.png");
     }
 
     private ImageIcon chargerIcone(String urlIcone) {
@@ -113,9 +115,11 @@ public class VueControleurGyromite extends JFrame implements Observer {
                 if (jeu.getGrille()[x][y] instanceof Heros) { // si la grille du modèle contient un Pacman, on associe l'icône Pacman du côté de la vue
                     // System.out.println("Héros !");
                     tabJLabel[x][y].setIcon(icoHero);
-                } else if (jeu.getGrille()[x][y] instanceof Mur) {
-                    tabJLabel[x][y].setIcon(icoMur);
-                } else if (jeu.getGrille()[x][y] instanceof Colonne) {
+                } else if (jeu.getGrille()[x][y] instanceof Mur_Horizontal) {
+                    tabJLabel[x][y].setIcon(icoMurHorizontal);
+                }else if (jeu.getGrille()[x][y] instanceof Mur_Vertical) {
+                    tabJLabel[x][y].setIcon(icoMurVertical);
+                }else if (jeu.getGrille()[x][y] instanceof Colonne) {
                     tabJLabel[x][y].setIcon(icoColonne);
                 } else {
                     tabJLabel[x][y].setIcon(icoVide);

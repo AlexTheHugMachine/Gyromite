@@ -66,18 +66,18 @@ public class Jeu {
 
         // murs extérieurs horizontaux
         for (int x = 0; x < 20; x++) {
-            addEntite(new Mur(this), x, 0);
-            addEntite(new Mur(this), x, 9);
+            addEntite(new Mur_Horizontal(this), x, 0);
+            addEntite(new Mur_Horizontal(this), x, 9);
         }
 
         // murs extérieurs verticaux
         for (int y = 1; y < 9; y++) {
-            addEntite(new Mur(this), 0, y);
-            addEntite(new Mur(this), 19, y);
+            addEntite(new Mur_Vertical(this), 0, y);
+            addEntite(new Mur_Vertical(this), 19, y);
         }
 
-        addEntite(new Mur(this), 2, 6);
-        addEntite(new Mur(this), 3, 6);
+        addEntite(new Mur_Horizontal(this), 2, 6);
+        addEntite(new Mur_Horizontal(this), 3, 6);
     }
 
     private void addEntite(Entite e, int x, int y) {
