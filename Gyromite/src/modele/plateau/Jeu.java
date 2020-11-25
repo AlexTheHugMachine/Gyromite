@@ -78,6 +78,7 @@ public class Jeu {
 
         addEntite(new Mur_Horizontal(this), 2, 6);
         addEntite(new Mur_Horizontal(this), 3, 6);
+        addEntite(new Brick(this), 8, 6);
     }
 
     private void addEntite(Entite e, int x, int y) {

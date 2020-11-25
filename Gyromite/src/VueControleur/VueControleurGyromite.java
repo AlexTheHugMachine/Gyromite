@@ -34,6 +34,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private ImageIcon icoVide;
     private ImageIcon icoMurHorizontal;
     private ImageIcon icoMurVertical;
+    private ImageIcon icoBrick;
     private ImageIcon icoColonne;
 
     private JLabel[][] tabJLabel; // cases graphique (au moment du rafraichissement, chaque case va être associée à une icône, suivant ce qui est présent dans le modèle)
@@ -70,6 +71,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
         icoColonne = chargerIcone("Images/sprites_tiles/platform1.png");
         icoMurHorizontal = chargerIcone("Images/sprites_tiles/platform1.png");
         icoMurVertical = chargerIcone("Images/sprites_tiles/platform2.png");
+        icoBrick = chargerIcone("Images/sprites_tiles/brick1.png");
     }
 
     private ImageIcon chargerIcone(String urlIcone) {
@@ -119,6 +121,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     tabJLabel[x][y].setIcon(icoMurHorizontal);
                 }else if (jeu.getGrille()[x][y] instanceof Mur_Vertical) {
                     tabJLabel[x][y].setIcon(icoMurVertical);
+                }else if (jeu.getGrille()[x][y] instanceof Brick) {
+                    tabJLabel[x][y].setIcon(icoBrick);
                 }else if (jeu.getGrille()[x][y] instanceof Colonne) {
                     tabJLabel[x][y].setIcon(icoColonne);
                 } else {
