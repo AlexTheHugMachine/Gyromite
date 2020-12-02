@@ -13,6 +13,10 @@ public class Heros extends EntiteDynamique {
         super(_jeu);
     }
 
+    public boolean tuerEntite(Entite e){
+        return false;
+    }
+
     public boolean peutEtreEcrase() { return true; }
     public boolean peutServirDeSupport() { return true; }
     public boolean peutPermettreDeMonterDescendre() { return false; };
