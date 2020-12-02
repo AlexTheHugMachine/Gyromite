@@ -18,14 +18,15 @@ import java.util.HashMap;
  */
 public class Jeu {
 
-    public static final int SIZE_X = 20;
-    public static final int SIZE_Y = 10;
+    public static final int SIZE_X = 60;
+    public static final int SIZE_Y = 20;
 
     // compteur de déplacements horizontal et vertical (1 max par défaut, à chaque pas de temps)
     private HashMap<Entite, Integer> cmptDeplH = new HashMap<Entite, Integer>();
     private HashMap<Entite, Integer> cmptDeplV = new HashMap<Entite, Integer>();
 
     private Heros hector;
+    public  Bombe bombe;
 
     private HashMap<Entite, Point> map = new  HashMap<Entite, Point>(); // permet de récupérer la position d'une entité à partir de sa référence
     private Entite[][] grilleEntites = new Entite[SIZE_X][SIZE_Y]; // permet de récupérer une entité à partir de ses coordonnées
@@ -57,6 +58,9 @@ public class Jeu {
         hector = new Heros(this);
         addEntite(hector, 2, 1);
 
+        bombe= new Bombe(this);
+        addEntite(bombe,4,5);
+
         Gravite g = new Gravite();
         g.addEntiteDynamique(hector);
         ordonnanceur.add(g);
@@ -65,20 +69,19 @@ public class Jeu {
         ordonnanceur.add(Controle4Directions.getInstance());
 
         // murs extérieurs horizontaux
-        for (int x = 0; x < 20; x++) {
+        for (int x = 0; x < 60; x++) {
             addEntite(new Mur_Horizontal(this), x, 0);
-            addEntite(new Mur_Horizontal(this), x, 9);
+            addEntite(new Brick(this), x, 19);
         }
 
         // murs extérieurs verticaux
-        for (int y = 1; y < 9; y++) {
+        for (int y = 1; y < 19; y++) {
             addEntite(new Mur_Vertical(this), 0, y);
-            addEntite(new Mur_Vertical(this), 19, y);
+            addEntite(new Mur_Vertical(this), 59, y);
         }
 
         addEntite(new Mur_Horizontal(this), 2, 6);
         addEntite(new Mur_Horizontal(this), 3, 6);
-        addEntite(new Brick(this), 8, 6);
     }
 
     private void addEntite(Entite e, int x, int y) {
@@ -103,8 +106,9 @@ public class Jeu {
         Point pCourant = map.get(e);
         
         Point pCible = calculerPointCible(pCourant, d);
+        System.out.println(objetALaPosition(pCible));
         
-        if (contenuDansGrille(pCible) && objetALaPosition(pCible) == null) { // a adapter (collisions murs, etc.)
+        if (contenuDansGrille(pCible) && (objetALaPosition(pCible) == null || objetALaPosition(pCible) == bombe)){ // a adapter (collisions murs, etc.)
             // compter le déplacement : 1 deplacement horizontal et vertical max par pas de temps par entité
             switch (d) {
                 case bas:
