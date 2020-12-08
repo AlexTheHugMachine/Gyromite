@@ -71,46 +71,74 @@ public class Jeu {
         for (int x = 0; x < 60; x++) {
             addEntite(new Mur_Horizontal(this), x, 0,0);
             addEntite(new Brick(this), x, 19,0);
+            addEntite(new Brick(this), x, 18,0);
         }
 
         // murs extérieurs verticaux
-        for (int y = 1; y < 19; y++) {
+        for (int y = 1; y < 18; y++) {
             addEntite(new Mur_Horizontal(this), 0, y,0);
             addEntite(new Mur_Horizontal(this), 59, y,0);
         }
 
-        addEntite(new Mur_Horizontal(this), 2, 6,0);
+        for (int x = 1; x < 59; x++) {
+            addEntite(new Mur_Horizontal(this), x, 6,0);
+            addEntite(new Mur_Horizontal(this), x, 9,0);
+            addEntite(new Mur_Horizontal(this), x, 12,0);
+            addEntite(new Mur_Horizontal(this), x, 15,0);
+        }
+
+        /*addEntite(new Mur_Horizontal(this), 2, 6,0);
         addEntite(new Mur_Horizontal(this), 3, 6,0);
         addEntite(new Mur_Horizontal(this), 10, 8,0);
         addEntite(new Mur_Horizontal(this), 5, 6,0);
         addEntite(new Mur_Horizontal(this), 4, 8,0);
         addEntite(new Mur_Horizontal(this), 5, 8,0);
-        addEntite(new Mur_Horizontal(this), 6, 8,0);
+        addEntite(new Mur_Horizontal(this), 6, 8,0);*/
 
 
         Bot smick1 = new Bot(this);
         addEntite(smick1, 17, 8,1);
+        Bot smick2 = new Bot(this);
+        addEntite(smick2, 17, 11,1);
+        Bot smick3 = new Bot(this);
+        addEntite(smick3, 17, 14,1);
 
-        addEntite(new Corde(this), 4, 5,0);
         addEntite(new Corde(this), 4, 6,0);
         addEntite(new Corde(this), 4, 7,0);
-        addEntite(new Corde(this), 4, 18,0);
+        addEntite(new Corde(this), 4, 8,0);
+
+        addEntite(new Corde(this), 48, 9,0);
+        addEntite(new Corde(this), 48, 10,0);
+        addEntite(new Corde(this), 48, 11,0);
+
+        addEntite(new Corde(this), 36, 12,0);
+        addEntite(new Corde(this), 36, 13,0);
+        addEntite(new Corde(this), 36, 14,0);
+
+        addEntite(new Corde(this), 20, 15,0);
+        addEntite(new Corde(this), 20, 16,0);
+        addEntite(new Corde(this), 20, 17,0);
+        /*addEntite(new Corde(this), 4, 18,0);
         addEntite(new Corde(this), 4, 17,0);
-        addEntite(new Corde(this), 4, 16,0);
+        addEntite(new Corde(this), 4, 16,0);*/
 
         IA ia = new IA();
         ia.addEntiteDynamique(smick1);
+        ia.addEntiteDynamique(smick2);
+        ia.addEntiteDynamique(smick3);
         ordonnanceur.add(ia);
 
         Gravite g = new Gravite();
         g.addEntiteDynamique(hector);
         g.addEntiteDynamique(smick1);
+        g.addEntiteDynamique(smick2);
+        g.addEntiteDynamique(smick3);
         ordonnanceur.add(g);
 
-        addEntite(new Bombe(this),3,5,1);
-        addEntite(new Bombe(this),4,5,1);
-        addEntite(new Bombe(this),5,5,1);
-        addEntite(new Bombe(this),6,5,1);
+        addEntite(new Bombe(this),8,5,1);
+        addEntite(new Bombe(this),9,5,1);
+        addEntite(new Bombe(this),10,5,1);
+        addEntite(new Bombe(this),11,5,1);
     }
 
     private void addEntite(Entite e, int x, int y,int dynamique) {
