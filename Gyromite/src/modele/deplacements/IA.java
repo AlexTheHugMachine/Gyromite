@@ -4,6 +4,7 @@ import modele.plateau.*;
 
 import java.util.ArrayList;
 
+
 public class IA extends RealisateurDeDeplacement {
 
     protected boolean realiserDeplacement() {

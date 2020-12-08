@@ -41,7 +41,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private ImageIcon icoCorde;
 
 
-
+    private  JTable score;
     private JLabel[][] tabJLabel; // cases graphique (au moment du rafraichissement, chaque case va être associée à une icône, suivant ce qui est présent dans le modèle)
 
 
@@ -114,14 +114,23 @@ public class VueControleurGyromite extends JFrame implements Observer {
                 grilleJLabels.add(jlab);
             }
         }
-        add(grilleJLabels);
+        String data[][] = this.jeu.getScore();
+        String columns[] = {"","","","","","",}; // Les 4 meilleures scores
+        score = new JTable(data,columns);
+        score.setFocusable(false);
+        add(grilleJLabels,BorderLayout.CENTER);
+        add((score),BorderLayout.NORTH);
     }
+
 
     
     /**
      * Il y a une grille du côté du modèle ( jeu.getGrille() ) et une grille du côté de la vue (tabJLabel)
      */
     private void mettreAJourAffichage() {
+        for (int i=1; i<6; i+=2){
+            score.getModel().setValueAt(jeu.getScore()[0][i],0,i);
+        }
 
         for (int x = 0; x < sizeX; x++) {
             for (int y = 0; y < sizeY; y++) {

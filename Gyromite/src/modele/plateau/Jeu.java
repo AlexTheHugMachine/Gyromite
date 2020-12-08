@@ -29,6 +29,9 @@ public class Jeu {
 
     private Ordonnanceur ordonnanceur = new Ordonnanceur(this);
 
+    private int NbrBombes = 1;
+    private int NbrVies = 3;
+
     public Jeu() {
         initialisationDesEntites();
     }
@@ -50,9 +53,16 @@ public class Jeu {
         return hector;
     }
 
+    public void respawn(){
+        Point p = map.get(hector);
+        supprimeEntite(p.x,p.y,1);
+        addEntite(hector,hector.getSpawn_X(),hector.getSpawn_Y(),1);
+        NbrVies--;
+    }
+
     private void initialisationDesEntites() {
-        hector = new Heros(this);
-        addEntite(hector, 2, 1,1);
+        hector = new Heros(this,2,1);
+        addEntite(hector, hector.getSpawn_X(), hector.getSpawn_Y(), 1);
 
         Controle4Directions.getInstance().addEntiteDynamique(hector);
         ordonnanceur.add(Controle4Directions.getInstance());
@@ -72,9 +82,11 @@ public class Jeu {
         addEntite(new Mur_Horizontal(this), 2, 6,0);
         addEntite(new Mur_Horizontal(this), 3, 6,0);
         addEntite(new Mur_Horizontal(this), 10, 8,0);
-        addEntite(new Mur_Horizontal(this), 5, 18,0);
-        addEntite(new Mur_Horizontal(this), 6, 18,0);
-        addEntite(new Mur_Horizontal(this), 7, 18,0);
+        addEntite(new Mur_Horizontal(this), 5, 6,0);
+        addEntite(new Mur_Horizontal(this), 4, 8,0);
+        addEntite(new Mur_Horizontal(this), 5, 8,0);
+        addEntite(new Mur_Horizontal(this), 6, 8,0);
+
 
         Bot smick1 = new Bot(this);
         addEntite(smick1, 17, 8,1);
@@ -94,11 +106,20 @@ public class Jeu {
         g.addEntiteDynamique(hector);
         g.addEntiteDynamique(smick1);
         ordonnanceur.add(g);
+
+        addEntite(new Bombe(this),3,5,1);
+        addEntite(new Bombe(this),4,5,1);
+        addEntite(new Bombe(this),5,5,1);
+        addEntite(new Bombe(this),6,5,1);
     }
 
     private void addEntite(Entite e, int x, int y,int dynamique) {
         grilleEntites[x][y][dynamique] = e;
         map.put(e, new Point(x, y));
+    }
+
+    private void supprimeEntite(int x , int y , int dynamique){
+        grilleEntites[x][y] [dynamique] =null;
     }
     /** Permet par exemple a une entité  de percevoir sont environnement proche et de définir sa stratégie de déplacement
      *
@@ -123,7 +144,8 @@ public class Jeu {
         if (contenuDansGrille(pCible) && (
                 eCible == null  ||
                         !eCible.peutServirDeSupport() || //mur
-                        eCible.peutPermettreDeMonterDescendre() //corde
+                        eCible.peutPermettreDeMonterDescendre() ||
+                        eCible.peutEtreRamasse(e)//corde
         )) { // a adapter (collisions murs, etc.)
             // compter le déplacement : 1 deplacement horizontal et vertical max par pas de temps par entité
             if (cmptDeplV.get(e) == null || e.tuerEntite(eCible)) {
@@ -144,6 +166,10 @@ public class Jeu {
 
         if (retour) {
             deplacerEntite(pCourant, pCible, e);
+            if(eCible!= null && eCible.peutEtreRamasse(e)){
+                supprimeEntite(pCible.x,pCible.y,0);
+                NbrBombes = NbrBombes -1;
+            }
         }
 
         return retour;
@@ -190,5 +216,14 @@ public class Jeu {
 
     public Ordonnanceur getOrdonnanceur() {
         return ordonnanceur;
+    }
+
+    public String[][] getScore(){
+        String[][] score = {{
+            "Points: ","100",
+            "Vies: ", String.valueOf(this.NbrVies),
+            "Bombes: ", String.valueOf(this.NbrBombes),
+        }};
+        return score;
     }
 }

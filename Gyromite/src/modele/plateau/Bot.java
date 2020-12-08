@@ -74,11 +74,16 @@ public class Bot extends EntiteDynamique {
     }
 
     public boolean tuerEntite(Entite e){
-        return e instanceof Heros;
+        if(e instanceof Heros){
+            jeu.respawn();
+            return true;
+        }
+        return false;
     }
 
 
     public boolean peutEtreEcrase() { return true; }
     public boolean peutServirDeSupport() { return true; }
     public boolean peutPermettreDeMonterDescendre() { return false; };
+    public boolean peutEtreRamasse(Entite e){ return false;}
 }

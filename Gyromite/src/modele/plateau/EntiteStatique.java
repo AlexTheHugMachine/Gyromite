@@ -8,9 +8,17 @@ public abstract class EntiteStatique extends Entite {
         super(_jeu);
     }
 
+    @Override
+    public boolean peutEtreRamasse(Entite e) {
+        return false;
+    }
+    @Override
     public boolean peutEtreEcrase() { return false; }
+    @Override
     public boolean peutServirDeSupport() { return true; }
+    @Override
     public boolean peutPermettreDeMonterDescendre() { return false; };
+    @Override
     public boolean tuerEntite(Entite e){
         return false;
     }
