@@ -16,6 +16,7 @@ public class Bot extends EntiteDynamique {
     private Random r = new Random();
     private Direction vert;
     private  Direction hor;
+    private IA ia;
 
     public Bot(Jeu _jeu) {
 
@@ -79,6 +80,10 @@ public class Bot extends EntiteDynamique {
             return true;
         }
         return false;
+    }
+
+    public IA getIA(){
+        return ia;
     }
 
 

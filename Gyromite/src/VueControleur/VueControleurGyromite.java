@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import modele.deplacements.Colonne;
 import modele.deplacements.Controle4Directions;
 import modele.deplacements.Direction;
 import modele.plateau.*;
@@ -64,6 +65,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     case KeyEvent.VK_RIGHT : Controle4Directions.getInstance().setDirectionCourante(Direction.droite); break;
                     case KeyEvent.VK_DOWN : Controle4Directions.getInstance().setDirectionCourante(Direction.bas); break;
                     case KeyEvent.VK_UP : Controle4Directions.getInstance().setDirectionCourante(Direction.haut); break;
+                    case KeyEvent.VK_R:  Colonne.getInstance().setDirectionCouranteR();break;
                 }
             }
         });
@@ -143,7 +145,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     tabJLabel[x][y].setIcon(icoMurVertical);
                 }else if (jeu.getGrille()[x][y][0] instanceof Brick) {
                     tabJLabel[x][y].setIcon(icoBrick);
-                }else if (jeu.getGrille()[x][y][0] instanceof Pilliar) {
+                }else if (jeu.getGrille()[x][y][0] instanceof PillarRed) {
                     tabJLabel[x][y].setIcon(icoColonne);
                 }else if (jeu.getGrille()[x][y][1] instanceof Bombe){
                     tabJLabel[x][y].setIcon(icoBombe);

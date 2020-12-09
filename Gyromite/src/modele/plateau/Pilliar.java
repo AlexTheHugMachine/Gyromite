@@ -1,24 +1,47 @@
 package modele.plateau;
 
+import modele.deplacements.Colonne;
 import modele.deplacements.Direction;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-public class Pilliar extends EntiteDynamique {
+public class Pilliar {
 
+    private int taille;
+    private String couleur;
+    private ArrayList<PillarBlock> listBlock = new ArrayList<PillarBlock>();
+    private Jeu jeu;
 
-    public Pilliar(Jeu _jeu) {
-        super(_jeu);
+    public Pilliar (Jeu _jeu, int taille,String couleur){
+        this.jeu = _jeu;
+        this.taille = taille;
+        for (int i =0; i < taille; i++){
+            if(couleur=="rouge") this.listBlock.add(new PillarRed(_jeu));
+        }
+        this.couleur= couleur;
+    }
+
+    public int getTaille(){
+        return taille;
+    }
+
+    public void setTaille(int taille){
+        this.taille = taille;
+    }
+
+    public String getCouleur(){
+        return couleur;
+    }
+
+    public void setCouleur(String couleur){
+        this.couleur = couleur;
+    }
+
+    public ArrayList<PillarBlock> getListBlock(){
+        return listBlock;
     }
 
 
 
-    public boolean tuerEntite(Entite e){
-        return true;
-    }
-
-    public boolean peutEtreEcrase() { return false; }
-    public boolean peutServirDeSupport() { return true; }
-    public boolean peutPermettreDeMonterDescendre() { return false; };
-    public  boolean peutEtreRamasse(Entite e) {return false;}
 }

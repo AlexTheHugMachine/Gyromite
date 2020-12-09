@@ -54,7 +54,7 @@ public class Jeu {
         return hector;
     }
 
-    public void respawn(){
+    public boolean respawn(){
         Point p = map.get(hector);
         if (NbrVies > 0) {
             supprimeEntite(p.x, p.y, 1);
@@ -65,6 +65,23 @@ public class Jeu {
             supprimeEntite(p.x, p.y, 1);
         }
         score = score - 100;
+        return true;
+    }
+
+    public boolean killSmick(Bot e){
+        Point positionSmick = map.get(e);
+        supprimeEntite(positionSmick.x,positionSmick.y,1);
+        //e.getIA().removeEntiteDynamique(e);
+        //Gravite.getInstance().removeEntiteDynamique(e);
+        score += 20;
+        return true;
+    }
+
+    public void generatePillar(Pilliar pilliar, int x , int y){
+        for(PillarBlock p: pilliar.getListBlock()){
+            addEntite(p,x,y++,0);
+            Colonne.getInstance().addEntiteDynamique(p);
+        }
     }
 
     private void initialisationDesEntites() {
@@ -110,10 +127,8 @@ public class Jeu {
         Bot smick3 = new Bot(this);
         addEntite(smick3, 17, 14,1);
 
-        Pilliar pilliar1 = new Pilliar(this);
-        Pilliar pilliar2 = new Pilliar(this);
-        addEntite(pilliar1,15,6,0);
-        addEntite(pilliar2,15,7,0);
+        Pilliar pilliar1 = new Pilliar(this,3,"rouge");
+        generatePillar(pilliar1,15,6);
 
         addEntite(new Corde(this), 4, 6,0);
         addEntite(new Corde(this), 4, 7,0);

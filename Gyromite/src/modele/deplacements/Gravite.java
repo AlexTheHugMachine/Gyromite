@@ -4,6 +4,16 @@ import modele.plateau.Entite;
 import modele.plateau.EntiteDynamique;
 
 public class Gravite extends RealisateurDeDeplacement {
+
+    private static Gravite g;
+
+    public static Gravite getInstance() {
+        if (g == null) {
+            g = new Gravite();
+        }
+        return g;
+    }
+
     @Override
     public boolean realiserDeplacement() {
         boolean ret = false;
