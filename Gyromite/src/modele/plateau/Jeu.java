@@ -104,7 +104,14 @@ public class Jeu {
             addEntite(new Mur_Horizontal(this), 59, y,0);
         }
 
-        for (int x = 1; x < 59; x++) {
+        for (int x = 1; x < 15; x++) {
+            addEntite(new Mur_Horizontal(this), x, 6,0);
+            addEntite(new Mur_Horizontal(this), x, 9,0);
+            addEntite(new Mur_Horizontal(this), x, 12,0);
+            addEntite(new Mur_Horizontal(this), x, 15,0);
+        }
+
+        for (int x = 16; x < 59; x++) {
             addEntite(new Mur_Horizontal(this), x, 6,0);
             addEntite(new Mur_Horizontal(this), x, 9,0);
             addEntite(new Mur_Horizontal(this), x, 12,0);
