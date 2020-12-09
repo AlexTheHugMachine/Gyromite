@@ -145,7 +145,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     tabJLabel[x][y].setIcon(icoMurVertical);
                 }else if (jeu.getGrille()[x][y][0] instanceof Brick) {
                     tabJLabel[x][y].setIcon(icoBrick);
-                }else if (jeu.getGrille()[x][y][0] instanceof PillarRed) {
+                }else if (jeu.getGrille()[x][y][1] instanceof PillarRed) {
                     tabJLabel[x][y].setIcon(icoColonne);
                 }else if (jeu.getGrille()[x][y][1] instanceof Bombe){
                     tabJLabel[x][y].setIcon(icoBombe);

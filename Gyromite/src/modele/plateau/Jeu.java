@@ -79,7 +79,7 @@ public class Jeu {
 
     public void generatePillar(Pilliar pilliar, int x , int y){
         for(PillarBlock p: pilliar.getListBlock()){
-            addEntite(p,x,y++,0);
+            addEntite(p,x,y++,1);
             Colonne.getInstance().addEntiteDynamique(p);
         }
     }
@@ -129,6 +129,7 @@ public class Jeu {
 
         Pilliar pilliar1 = new Pilliar(this,3,"rouge");
         generatePillar(pilliar1,15,6);
+        ordonnanceur.add(Colonne.getInstance());
 
         addEntite(new Corde(this), 4, 6,0);
         addEntite(new Corde(this), 4, 7,0);

@@ -50,7 +50,7 @@ public class Colonne extends RealisateurDeDeplacement {
         if (this.directionCourante == Direction.haut){
             ListIterator<EntiteDynamique> iterator = lstEntitesDynamiques.listIterator();
             while (iterator.hasNext()){
-                Entite e = iterator.previous();
+                Entite e = iterator.next();
                 if (e instanceof PillarBlock) listBlocks.add((PillarBlock)e);
             }
         }
