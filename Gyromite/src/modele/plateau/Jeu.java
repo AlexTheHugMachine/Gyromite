@@ -29,8 +29,9 @@ public class Jeu {
 
     private Ordonnanceur ordonnanceur = new Ordonnanceur(this);
 
-    private int NbrBombes = 1;
+    private int NbrBombes = 4;
     private int NbrVies = 3;
+    private int score = 0;
 
     public Jeu() {
         initialisationDesEntites();
@@ -55,9 +56,15 @@ public class Jeu {
 
     public void respawn(){
         Point p = map.get(hector);
-        supprimeEntite(p.x,p.y,1);
-        addEntite(hector,hector.getSpawn_X(),hector.getSpawn_Y(),1);
-        NbrVies--;
+        if (NbrVies > 0) {
+            supprimeEntite(p.x, p.y, 1);
+            addEntite(hector, hector.getSpawn_X(), hector.getSpawn_Y(), 1);
+            NbrVies--;
+        }
+        if (NbrVies == 0) {
+            supprimeEntite(p.x, p.y, 1);
+        }
+        score = score - 100;
     }
 
     private void initialisationDesEntites() {
@@ -207,6 +214,7 @@ public class Jeu {
             if(eCible!= null && eCible.peutEtreRamasse(e)){
                 supprimeEntite(pCible.x,pCible.y,0);
                 NbrBombes = NbrBombes -1;
+                score = score + 100;
             }
         }
 
@@ -258,7 +266,7 @@ public class Jeu {
 
     public String[][] getScore(){
         String[][] score = {{
-            "Points: ","100",
+            "Points: ", String.valueOf(this.score),
             "Vies: ", String.valueOf(this.NbrVies),
             "Bombes: ", String.valueOf(this.NbrBombes),
         }};
