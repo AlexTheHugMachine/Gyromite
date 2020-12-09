@@ -103,6 +103,11 @@ public class Jeu {
         Bot smick3 = new Bot(this);
         addEntite(smick3, 17, 14,1);
 
+        Pilliar pilliar1 = new Pilliar(this);
+        Pilliar pilliar2 = new Pilliar(this);
+        addEntite(pilliar1,15,6,0);
+        addEntite(pilliar2,15,7,0);
+
         addEntite(new Corde(this), 4, 6,0);
         addEntite(new Corde(this), 4, 7,0);
         addEntite(new Corde(this), 4, 8,0);
@@ -127,6 +132,11 @@ public class Jeu {
         ia.addEntiteDynamique(smick2);
         ia.addEntiteDynamique(smick3);
         ordonnanceur.add(ia);
+
+        /*Colonne colonne = new Colonne();
+        colonne.addEntiteDynamique(pilliar1);
+        colonne.addEntiteDynamique(pilliar2);
+        ordonnanceur.add(colonne);*/
 
         Gravite g = new Gravite();
         g.addEntiteDynamique(hector);

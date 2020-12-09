@@ -1,7 +1,17 @@
 package modele.plateau;
 
-public class Colonne extends EntiteDynamique {
-    public Colonne(Jeu _jeu) { super(_jeu); }
+import modele.deplacements.Direction;
+
+import java.util.Random;
+
+public class Pilliar extends EntiteDynamique {
+
+
+    public Pilliar(Jeu _jeu) {
+        super(_jeu);
+    }
+
+
 
     public boolean tuerEntite(Entite e){
         return true;

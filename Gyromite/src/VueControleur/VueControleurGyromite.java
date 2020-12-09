@@ -73,7 +73,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private void chargerLesIcones() {
         icoHero = chargerIcone("Images/sprites_prof/prof_look_left.png");
         icoVide = chargerIcone("Images/sprites_tiles/vide.png");
-        icoColonne = chargerIcone("Images/sprites_tiles/platform1.png");
+        icoColonne = chargerIcone("Images/sprites_tiles/red_tube_1.png");
         icoMurHorizontal = chargerIcone("Images/sprites_tiles/platform1.png");
         icoMurVertical = chargerIcone("Images/sprites_tiles/platform2.png");
         icoBrick = chargerIcone("Images/sprites_tiles/brick1.png");
@@ -143,7 +143,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     tabJLabel[x][y].setIcon(icoMurVertical);
                 }else if (jeu.getGrille()[x][y][0] instanceof Brick) {
                     tabJLabel[x][y].setIcon(icoBrick);
-                }else if (jeu.getGrille()[x][y][0] instanceof Colonne) {
+                }else if (jeu.getGrille()[x][y][0] instanceof Pilliar) {
                     tabJLabel[x][y].setIcon(icoColonne);
                 }else if (jeu.getGrille()[x][y][1] instanceof Bombe){
                     tabJLabel[x][y].setIcon(icoBombe);
