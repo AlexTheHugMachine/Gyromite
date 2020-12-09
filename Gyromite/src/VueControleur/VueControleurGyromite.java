@@ -136,6 +136,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
             for (int y = 0; y < sizeY; y++) {
                 if (jeu.getGrille()[x][y][1] instanceof Heros) { // si la grille du modèle contient un Pacman, on associe l'icône Pacman du côté de la vue
                     // System.out.println("Héros !");
+                    //Direction d = Controle4Directions.getInstance();
                     tabJLabel[x][y].setIcon(icoHero);
                 } else if (jeu.getGrille()[x][y][0] instanceof Mur_Horizontal) {
                     tabJLabel[x][y].setIcon(icoMurHorizontal);
