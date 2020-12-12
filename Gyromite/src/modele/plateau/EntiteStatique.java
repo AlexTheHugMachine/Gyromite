@@ -23,3 +23,16 @@ public abstract class EntiteStatique extends Entite {
         return false;
     }
 }
+
+/*
+@startuml
++abstract class EntiteStatique extends Entite {
++ EntiteStatique(Jeu _jeu)
++ peutEtreRamasse(Entite e) : boolean
++ peutEtreEcrase() : boolean
++ peutServirDeSupport() : boolean
++ peutPermettreDeMonterDescendre() : boolean
++ tuerEntite(Entite e) : boolean
+}
+@enduml
+ */

@@ -174,3 +174,33 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
     }
 }
+
+/*
+@startuml
++class VueControleurGyromite extends JFrame implements Observer {
+- jeu : Jeu
+- sizeX : int
+- sizeY : int
+- icoHero : ImageIcon
+- icoVide : ImageIcon
+- icoMurHorizontal : ImageIcon
+- icoMurVertical : ImageIcon
+- icoBrick : ImageIcon
+- icoColonne : ImageIcon
+- icoBombe : ImageIcon
+- icoSmick : ImageIcon
+- icoCorde : ImageIcon
+- score : JTable
+- tabJLabel : JLabel[][]
+--
++ VueControleurGyromite(Jeu _jeu)
++ update(Observable o, Object arg) : void
+--
+- ajouterEcouteurClavier() : void
+- chargerLesIcones() : void
+- chargerIcone(String urlIcone) : ImageIcon
+- placerLesComposantsGraphiques() : void
+- mettreAJourAffichage() : void
+}
+@enduml
+ */

@@ -1,0 +1,243 @@
+@startuml
+
++class Controle4Directions extends RealisateurDeDeplacement {
+- directionCourante : Direction
+- c3d : static Controle4Directions
+--
++ getInstance() : static Controle4Directions
++ setDirectionCourante(Direction _directionCourante) : void
++ realiserDeplacement() : boolean
++ resetDirection() : void
+}
+
++enum Direction{
+haut
+bas
+gauche
+droite
+}
+
++class Gravite extends RealisateurDeDeplacement {
+- g : static Gravite
+--
++ getInstance() : static Gravite
++ realiserDeplacement() : boolean
+}
+
++class IA extends RealisateurDeDeplacement {
+# realiserDeplacement() : bool
+}
+
++class Ordonnanceur extends Observable implements Runnable {
+- jeu : Jeu
+- lstDeplacements : ArrayList<RealisateurDeDeplacement>
+- pause : long
+--
++ add(RealisateurDeDeplacement deplacement) : void
++ Ordonnanceur(Jeu _jeu)
++ start(long _pause) : void
++ run() : void
+}
+
++abstract class RealisateurDeDeplacement {
+# lstEntitesDynamiques : ArrayList<EntiteDynamique>
+--
+# realiserDeplacement() : abstract boolean
+--
++ addEntiteDynamique(EntiteDynamique ed) : void
+}
+
++class Colonne extends RealisateurDeDeplacement{
+- colonne : static Colonne
+- directionCouranteR : Direction
+- deplacementR : boolean
+- directionCourante : Direction
+--
+- deplacement(PillarBlock e, Direction directionCourante) : boolean
+- setGetDirectionCourante(Direction _directionCourante) : void
+--
++ realiserDeplacement() : boolean
++ setDirectionCouranteR() : void
++ getInstance() : static Colonne
+}
+
++class Bombe extends EntiteStatique{
++ Bombe(Jeu _jeu)
++ tuerEntite(Entite e) : boolean
++ peutEtreEcrase() : boolean
++ peutServirDeSupport() : boolean
++ peutPermettreDeMonterDescendre() : boolean
++ peutEtreRamasse(Entite e) : boolean
+}
+
++class Bot extends EntiteDynamique {
+- r : Random
+- vert : Direction
+- hor : Direction
+- ia : IA
+--
++ Bot(Jeu _jeu)
++ getDirection() : Direction
++ getDirection(boolean _vert) : Direction
++ changeDirection() : Direction
++ changeDirection(Direction _dir) : Direction
++ tuerEntite(Entite e) : boolean
++ getIA() : IA
++ peutEtreEcrase() : boolean
++ peutServirDeSupport() : boolean
++ peutPermettreDeMonterDescendre() : boolean
++ peutEtreRamasse(Entite e) : boolean
+}
+
++class Brick  extends EntiteStatique {
++ Brick(Jeu _jeu)
+}
+
++class Corde  extends EntiteStatique {
++ Corde(Jeu _jeu)
++ peutPermettreDeMonterDescendre() : boolean
++ peutEtreRamasser() : boolean
+}
+
++abstract class Entite{
+# jeu : Jeu
+--
++ Entite(Jeu _jeu)
++ peutEtreRamasse(Entite e) : abstract boolean
++ peutEtreEcrase() : abstract boolean
++ peutServirDeSupport() : abstract boolean
++ peutPermettreDeMonterDescendre() : abstract boolean
++ tuerEntite(Entite eCible) : abstract boolean
++ regarderDansLaDirection(Direction _dir) : Entite
+}
+
++abstract class EntiteDynamique extends Entite {
++ EntiteDynamique(Jeu _jeu)
++ avancerDirectionChoisie(Direction d) : boolean
+}
+
++abstract class EntiteStatique extends Entite {
++ EntiteStatique(Jeu _jeu)
++ peutEtreRamasse(Entite e) : boolean
++ peutEtreEcrase() : boolean
++ peutServirDeSupport() : boolean
++ peutPermettreDeMonterDescendre() : boolean
++ tuerEntite(Entite e) : boolean
+}
+
++class Heros extends EntiteDynamique {
+- spawn_X : int
+- spawn_Y : int
+--
++ Heros(Jeu _jeu, int x, int y)
++ tuerEntite(Entite e) : boolean
++ peutEtreEcrase() : boolean
++ peutServirDeSupport() : boolean
++ peutPermettreDeMonterDescendre() : boolean
++ peutEtreRamasse(Entite e) : boolean
++ getSpawn_X() : int
++ setSpawn_X(int spawn_X) : void
++ getSpawn_Y() : int
++ setSpawn_Y(int spawn_Y) : void
+}
+
++class Jeu{
++ SIZE_X : static final int
++ SIZE_Y : static final int
+- cmptDeplH : HashMap<Entite, Integer>
+- cmptDeplV : HashMap<Entite, Integer>
+- hector : Heros
+- map : HashMap<Entite, Point>
+- grilleEntites : Entite[][][]
+- ordonnanceur : Ordonnanceur
+- NbrBombes : int
+- NbrVies : int
+- score : int
+--
++ Jeu()
++ resetCmptDepl() : void
++ start(long _pause) : void
++ getGrille() : Entite[][][]
++ getHector() : Heros
++ respawn() : boolean
++ killSmick() : boolean
++ generatePillar(Pilliar pilliar, int x , int y) : void
++ regarderDansLaDirection(Entite e, Direction d) : Entite
++ deplacerEntite(EntiteDynamique e, Direction d) : boolean
++ getOrdonnanceur() : Ordonnanceur
++ getScore() : String[][]
+--
+- initialisationDesEntites() : void
+- addEntite(Entite e, int x, int y,int dynamique) : void
+- supprimeEntite(int x , int y , int dynamique) : void
+- calculerPointCible(Point pCourant, Direction d) : Point
+- deplacerEntite(Point pCourant, Point pCible, Entite e) : void
+- contenuDansGrille(Point p) : boolean
+- objetALaPosition(Point p) : Entite
+}
+
++class Mur_Horizontal extends EntiteStatique {
++ Mur_Horizontal(Jeu _jeu)
+}
+
++class Mur_Vertical extends EntiteStatique {
++ Mur_Vertical(Jeu _jeu)
+}
+
++class PillarBlock  extends EntiteDynamique{
++ PillarBlock(Jeu _jeu)
++ tuerEntite(Entite e) : boolean
++ peutEtreEcrase() : boolean
++ peutServirDeSupport() : boolean
++ peutPermettreDeMonterDescendre() : boolean
++ peutEtreRamasse(Entite e) : boolean
+}
+
++class PillarRed extends PillarBlock {
++ PillarRed(Jeu _jeu)
+}
+
++class Pilliar{
+- taille : int
+- couleur : String
+- listBlock : ArrayList<PillarBlock>
+- jeu : Jeu
+--
++ Pilliar(Jeu _jeu, int taille,String couleur)
++ getTaille() : int
++ setTaille(int taille) : void
++ getCouleur() : String
++ setCouleur(String couleur) : void
++ getListBlock() : ArrayList<PillarBlock>
+}
+
++class VueControleurGyromite extends JFrame implements Observer {
+- jeu : Jeu
+- sizeX : int
+- sizeY : int
+- icoHero : ImageIcon
+- icoVide : ImageIcon
+- icoMurHorizontal : ImageIcon
+- icoMurVertical : ImageIcon
+- icoBrick : ImageIcon
+- icoColonne : ImageIcon
+- icoBombe : ImageIcon
+- icoSmick : ImageIcon
+- icoCorde : ImageIcon
+- score : JTable
+- tabJLabel : JLabel[][]
+--
++ VueControleurGyromite(Jeu _jeu)
++ update(Observable o, Object arg) : void
+--
+- ajouterEcouteurClavier() : void
+- chargerLesIcones() : void
+- chargerIcone(String urlIcone) : ImageIcon
+- placerLesComposantsGraphiques() : void
+- mettreAJourAffichage() : void
+}
+
++class Main{
++ main(String[] args) : static void
+}
+@enduml

@@ -21,3 +21,11 @@ public class Main {
         jeu.start(300);
     }
 }
+
+/*
+@startuml
++class Main{
++ main(String[] args) : static void
+}
+@enduml
+ */

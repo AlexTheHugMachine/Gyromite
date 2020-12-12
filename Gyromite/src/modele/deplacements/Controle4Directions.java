@@ -59,3 +59,17 @@ public class Controle4Directions extends RealisateurDeDeplacement {
         directionCourante = null;
     }
 }
+
+/*
+@startuml
++class Controle4Directions extends RealisateurDeDeplacement {
+- directionCourante : Direction
+- c3d : static Controle4Directions
+--
++ getInstance() : static Controle4Directions
++ setDirectionCourante(Direction _directionCourante) : void
++ realiserDeplacement() : boolean
++ resetDirection() : void
+}
+@enduml
+ */

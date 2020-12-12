@@ -45,3 +45,21 @@ public class Pilliar {
 
 
 }
+
+/*
+@startuml
++class Pilliar{
+- taille : int
+- couleur : String
+- listBlock : ArrayList<PillarBlock>
+- jeu : Jeu
+--
++ Pilliar(Jeu _jeu, int taille,String couleur)
++ getTaille() : int
++ setTaille(int taille) : void
++ getCouleur() : String
++ setCouleur(String couleur) : void
++ getListBlock() : ArrayList<PillarBlock>
+}
+@enduml
+ */

@@ -29,3 +29,14 @@ public class Gravite extends RealisateurDeDeplacement {
         return ret;
     }
 }
+
+/*
+@startuml
++class Gravite extends RealisateurDeDeplacement {
+- g : static Gravite
+--
++ getInstance() : static Gravite
++ realiserDeplacement() : boolean
+}
+@enduml
+ */

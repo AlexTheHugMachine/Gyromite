@@ -5,3 +5,11 @@ public class PillarRed extends PillarBlock {
         super(_jeu);
     }
 }
+
+/*
+@startuml
++class PillarRed extends PillarBlock {
++ PillarRed(Jeu _jeu)
+}
+@enduml
+ */

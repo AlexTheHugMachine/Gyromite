@@ -51,3 +51,18 @@ public class Ordonnanceur extends Observable implements Runnable {
 
     }
 }
+
+/*
+@startuml
++class Ordonnanceur extends Observable implements Runnable {
+- jeu : Jeu
+- lstDeplacements : ArrayList<RealisateurDeDeplacement>
+- pause : long
+--
++ add(RealisateurDeDeplacement deplacement) : void
++ Ordonnanceur(Jeu _jeu)
++ start(long _pause) : void
++ run() : void
+}
+@enduml
+ */

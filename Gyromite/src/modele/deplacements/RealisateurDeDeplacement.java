@@ -13,3 +13,15 @@ public abstract class RealisateurDeDeplacement {
 
     public void addEntiteDynamique(EntiteDynamique ed) {lstEntitesDynamiques.add(ed);};
 }
+
+/*
+@startuml
++abstract class RealisateurDeDeplacement {
+# lstEntitesDynamiques : ArrayList<EntiteDynamique>
+--
+# realiserDeplacement() : abstract boolean
+--
++ addEntiteDynamique(EntiteDynamique ed) : void
+}
+@enduml
+ */

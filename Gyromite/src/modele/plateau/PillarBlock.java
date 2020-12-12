@@ -21,3 +21,16 @@ public class PillarBlock  extends EntiteDynamique{
     public boolean peutPermettreDeMonterDescendre() { return false; };
     public  boolean peutEtreRamasse(Entite e) {return false;}
 }
+
+/*
+@startuml
++class PillarBlock  extends EntiteDynamique{
++ PillarBlock(Jeu _jeu)
++ tuerEntite(Entite e) : boolean
++ peutEtreEcrase() : boolean
++ peutServirDeSupport() : boolean
++ peutPermettreDeMonterDescendre() : boolean
++ peutEtreRamasse(Entite e) : boolean
+}
+@enduml
+ */

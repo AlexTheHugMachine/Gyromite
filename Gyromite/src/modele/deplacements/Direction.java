@@ -12,3 +12,14 @@ package modele.deplacements;
 public enum Direction {
     haut, bas, gauche, droite
 }
+
+/*
+@startuml
++enum Direction{
+haut
+bas
+gauche
+droite
+}
+@enduml
+ */

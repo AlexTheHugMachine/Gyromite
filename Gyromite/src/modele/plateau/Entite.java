@@ -23,3 +23,19 @@ public abstract class Entite {
         return jeu.regarderDansLaDirection(this, _dir);
     }
 }
+
+/*
+@startuml
++abstract class Entite{
+# jeu : Jeu
+--
++ Entite(Jeu _jeu)
++ peutEtreRamasse(Entite e) : abstract boolean
++ peutEtreEcrase() : abstract boolean
++ peutServirDeSupport() : abstract boolean
++ peutPermettreDeMonterDescendre() : abstract boolean
++ tuerEntite(Entite eCible) : abstract boolean
++ regarderDansLaDirection(Direction _dir) : Entite
+}
+@enduml
+ */

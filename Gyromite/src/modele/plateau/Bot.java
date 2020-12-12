@@ -92,3 +92,26 @@ public class Bot extends EntiteDynamique {
     public boolean peutPermettreDeMonterDescendre() { return false; };
     public boolean peutEtreRamasse(Entite e){ return false;}
 }
+
+/*
+@startuml
++class Bot extends EntiteDynamique {
+- r : Random
+- vert : Direction
+- hor : Direction
+- ia : IA
+--
++ Bot(Jeu _jeu)
++ getDirection() : Direction
++ getDirection(boolean _vert) : Direction
++ changeDirection() : Direction
++ changeDirection(Direction _dir) : Direction
++ tuerEntite(Entite e) : boolean
++ getIA() : IA
++ peutEtreEcrase() : boolean
++ peutServirDeSupport() : boolean
++ peutPermettreDeMonterDescendre() : boolean
++ peutEtreRamasse(Entite e) : boolean
+}
+@enduml
+ */

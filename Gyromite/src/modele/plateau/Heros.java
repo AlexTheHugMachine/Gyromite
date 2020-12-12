@@ -43,3 +43,23 @@ public class Heros extends EntiteDynamique {
         this.spawn_Y = spawn_Y;
     }
 }
+
+/*
+@startuml
++class Heros extends EntiteDynamique {
+- spawn_X : int
+- spawn_Y : int
+--
++ Heros(Jeu _jeu, int x, int y)
++ tuerEntite(Entite e) : boolean
++ peutEtreEcrase() : boolean
++ peutServirDeSupport() : boolean
++ peutPermettreDeMonterDescendre() : boolean
++ peutEtreRamasse(Entite e) : boolean
++ getSpawn_X() : int
++ setSpawn_X(int spawn_X) : void
++ getSpawn_Y() : int
++ setSpawn_Y(int spawn_Y) : void
+}
+@enduml
+ */

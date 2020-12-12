@@ -91,3 +91,11 @@ public class IA extends RealisateurDeDeplacement {
         return ret;
     }
 }
+
+/*
+@startuml
++class IA extends RealisateurDeDeplacement {
+# realiserDeplacement() : bool
+}
+@enduml
+ */

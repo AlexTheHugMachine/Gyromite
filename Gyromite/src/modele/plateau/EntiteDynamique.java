@@ -12,3 +12,12 @@ public abstract class EntiteDynamique extends Entite {
         return jeu.deplacerEntite(this, d);
     }
 }
+
+/*
+@startuml
++abstract class EntiteDynamique extends Entite {
++ EntiteDynamique(Jeu _jeu)
++ avancerDirectionChoisie(Direction d) : boolean
+}
+@enduml
+ */

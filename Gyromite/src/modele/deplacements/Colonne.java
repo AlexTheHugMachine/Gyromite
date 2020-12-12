@@ -95,3 +95,21 @@ public class Colonne extends RealisateurDeDeplacement {
 
     } // TODO
 
+/*
+@startuml
++class Colonne extends RealisateurDeDeplacement{
+- colonne : static Colonne
+- directionCouranteR : Direction
+- deplacementR : boolean
+- directionCourante : Direction
+--
+- deplacement(PillarBlock e, Direction directionCourante) : boolean
+- setGetDirectionCourante(Direction _directionCourante) : void
+--
++ realiserDeplacement() : boolean
++ setDirectionCouranteR() : void
++ getInstance() : static Colonne
+}
+@enduml
+ */
+

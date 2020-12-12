@@ -296,3 +296,42 @@ public class Jeu {
         return score;
     }
 }
+
+/*
+@startuml
++class Jeu{
++ SIZE_X : static final int
++ SIZE_Y : static final int
+- cmptDeplH : HashMap<Entite, Integer>
+- cmptDeplV : HashMap<Entite, Integer>
+- hector : Heros
+- map : HashMap<Entite, Point>
+- grilleEntites : Entite[][][]
+- ordonnanceur : Ordonnanceur
+- NbrBombes : int
+- NbrVies : int
+- score : int
+--
++ Jeu()
++ resetCmptDepl() : void
++ start(long _pause) : void
++ getGrille() : Entite[][][]
++ getHector() : Heros
++ respawn() : boolean
++ killSmick() : boolean
++ generatePillar(Pilliar pilliar, int x , int y) : void
++ regarderDansLaDirection(Entite e, Direction d) : Entite
++ deplacerEntite(EntiteDynamique e, Direction d) : boolean
++ getOrdonnanceur() : Ordonnanceur
++ getScore() : String[][]
+--
+- initialisationDesEntites() : void
+- addEntite(Entite e, int x, int y,int dynamique) : void
+- supprimeEntite(int x , int y , int dynamique) : void
+- calculerPointCible(Point pCourant, Direction d) : Point
+- deplacerEntite(Point pCourant, Point pCible, Entite e) : void
+- contenuDansGrille(Point p) : boolean
+- objetALaPosition(Point p) : Entite
+}
+@enduml
+ */
