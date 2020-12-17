@@ -31,9 +31,22 @@ public class Jeu {
 
     private int NbrBombes = 4;
     private int NbrVies = 3;
-    private int score = 0;
+    private int Nbscore = 0;
+    public String Status = "Gyromite";
 
     public Jeu() {
+        reset();
+    }
+
+    public void reset(){
+        for (RealisateurDeDeplacement r : ordonnanceur.getLstDeplacements()) r.reset();
+        ordonnanceur.reset();
+        map = new HashMap<Entite, Point>();
+        resetCmptDepl();
+        grilleEntites = new Entite[SIZE_X][SIZE_Y][2];
+        NbrVies = 3;
+        NbrBombes = 4;
+        Nbscore =0;
         initialisationDesEntites();
     }
 
@@ -64,16 +77,16 @@ public class Jeu {
         if (NbrVies == 0) {
             supprimeEntite(p.x, p.y, 1);
         }
-        score = score - 100;
+        Nbscore = Nbscore- 100;
         return true;
     }
 
     public boolean killSmick(Bot e){
         Point positionSmick = map.get(e);
         supprimeEntite(positionSmick.x,positionSmick.y,1);
-        //e.getIA().removeEntiteDynamique(e);
-        //Gravite.getInstance().removeEntiteDynamique(e);
-        score += 20;
+        e.getIA().removeEntiteDynamique(e);
+        Gravite.getInstance().removeEntiteDynamique(e);
+        Nbscore += 20;
         return true;
     }
 
@@ -127,11 +140,11 @@ public class Jeu {
         addEntite(new Mur_Horizontal(this), 6, 8,0);*/
 
 
-        Bot smick1 = new Bot(this);
+        Bot smick1 = new Bot(this, new IA());
         addEntite(smick1, 17, 8,1);
-        Bot smick2 = new Bot(this);
+        Bot smick2 = new Bot(this,new IA());
         addEntite(smick2, 17, 11,1);
-        Bot smick3 = new Bot(this);
+        Bot smick3 = new Bot(this, new IA());
         addEntite(smick3, 17, 14,1);
 
         Pilliar pilliar1 = new Pilliar(this,3,"rouge");
@@ -187,6 +200,7 @@ public class Jeu {
     }
 
     private void supprimeEntite(int x , int y , int dynamique){
+        map.remove(grilleEntites[x][y][dynamique]);
         grilleEntites[x][y] [dynamique] =null;
     }
     /** Permet par exemple a une entité  de percevoir sont environnement proche et de définir sa stratégie de déplacement
@@ -213,7 +227,7 @@ public class Jeu {
                 eCible == null  ||
                         !eCible.peutServirDeSupport() || //mur
                         eCible.peutPermettreDeMonterDescendre() ||
-                        eCible.peutEtreRamasse(e)//corde
+                        eCible.peutEtreRamasse(e)//corde Bombe
         )) { // a adapter (collisions murs, etc.)
             // compter le déplacement : 1 deplacement horizontal et vertical max par pas de temps par entité
             if (cmptDeplV.get(e) == null || e.tuerEntite(eCible)) {
@@ -237,7 +251,7 @@ public class Jeu {
             if(eCible!= null && eCible.peutEtreRamasse(e)){
                 supprimeEntite(pCible.x,pCible.y,0);
                 NbrBombes = NbrBombes -1;
-                score = score + 100;
+                Nbscore = Nbscore + 100;
             }
         }
 
@@ -287,13 +301,33 @@ public class Jeu {
         return ordonnanceur;
     }
 
+    public int getNbrBombes(){
+        return NbrBombes;
+    }
+
+    public int getNbrVies(){
+        return NbrVies;
+    }
+
+    public int getNbscore(){
+        return Nbscore;
+    }
+
     public String[][] getScore(){
         String[][] score = {{
-            "Points: ", String.valueOf(this.score),
+            "Points: ", String.valueOf(this.Nbscore),
             "Vies: ", String.valueOf(this.NbrVies),
             "Bombes: ", String.valueOf(this.NbrBombes),
         }};
         return score;
+    }
+
+    public boolean gameOver() {
+        if((NbrBombes <= 0) || NbrVies<=0) {
+            if (NbrBombes <= 0) this.Status ="YOU WIN";
+            if (NbrVies <= 0) this.Status ="GAME OVER";
+        }
+        return (NbrBombes <=0 || NbrVies<=0);
     }
 }
 

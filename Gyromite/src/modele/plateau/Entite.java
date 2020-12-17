@@ -14,6 +14,10 @@ public abstract class Entite {
         jeu = _jeu;
     }
 
+    public  void destroy(){
+
+    }
+
     public abstract  boolean peutEtreRamasse(Entite e);
     public abstract boolean peutEtreEcrase(); // l'entité peut être écrasée (par exemple par une colonne ...)
     public abstract boolean peutServirDeSupport(); // permet de stopper la gravité, prendre appui pour sauter

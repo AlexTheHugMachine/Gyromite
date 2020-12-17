@@ -18,9 +18,10 @@ public class Bot extends EntiteDynamique {
     private  Direction hor;
     private IA ia;
 
-    public Bot(Jeu _jeu) {
+    public Bot(Jeu _jeu, IA ia) {
 
         super(_jeu);
+        this.ia = ia;
         if (r.nextBoolean())
             this.hor = Direction.droite;
         else

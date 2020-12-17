@@ -34,8 +34,6 @@ public class IA extends RealisateurDeDeplacement {
                         break;
                 }
                 if (e.tuerEntite(Next)) {
-                    //TODO tuer le joueur
-                    System.out.println("JOUEUR MORT");
                     if (e.avancerDirectionChoisie(d))
                         ret = true;
                 }
